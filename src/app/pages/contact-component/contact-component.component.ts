@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ContactComponentComponent implements OnInit {
 
-  form: FormGroup;
+  myForm: FormGroup;
   name: FormControl = new FormControl('',[Validators.required]);
   email: FormControl = new FormControl('',[Validators.required, Validators.email]);
   subject: FormControl = new FormControl('',[Validators.required]);
@@ -24,7 +24,7 @@ export class ContactComponentComponent implements OnInit {
   responseMessage: string | undefined; // the response message to show to the user
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
-    this.form = this.formBuilder.group({
+    this.myForm = this.formBuilder.group({
       name: this.name,
       email: this.email,
       subject: this.subject,
@@ -37,14 +37,14 @@ export class ContactComponentComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.status == "VALID" && this.honeypot.value == "") {
-      this.form.disable(); // disable the form if it's valid to disable multiple submissions
+    if (this.myForm.status == "VALID" && this.honeypot.value == "" && !this.submitting) {
+      this.myForm.disable(); // disable the form if it's valid to disable multiple submissions
       const formData: any = new FormData();
 
-      formData.append("name", this.form.getRawValue().value);
-      formData.append("email", this.form.getRawValue().value);
-      formData.append("subject", this.form.getRawValue().value);
-      formData.append("message", this.form.getRawValue().value);
+      formData.append("name", this.myForm.getRawValue().value);
+      formData.append("email", this.myForm.getRawValue().value);
+      formData.append("subject", this.myForm.getRawValue().value);
+      formData.append("message", this.myForm.getRawValue().value);
 
       this.submitting = true; // sending the post request async so it's in progress
       this.submitted = false; // hide the response message on multiple submits
@@ -52,17 +52,17 @@ export class ContactComponentComponent implements OnInit {
         const subscription = this.http.post("http://api.nutrilab.co.ke/api/store-message", formData).subscribe({
         next: (response) => {
           this.responseMessage = "Your message has been sent.";
-          this.form.enable(); // re-enable the form after a success
-          this.form.reset();
+          this.myForm.enable(); // re-enable the form after a success
+          this.myForm.reset();
 
-          this.form.getRawValue().clearValidators();
-          this.form.getRawValue().updateValueAndValidity();
-          this.form.getRawValue().clearValidators();
-          this.form.getRawValue().updateValueAndValidity();
-          this.form.getRawValue().clearValidators();
-          this.form.getRawValue().updateValueAndValidity();
-          this.form.getRawValue().clearValidators();
-          this.form.getRawValue().updateValueAndValidity();
+          this.myForm.getRawValue().clearValidators();
+          this.myForm.getRawValue().updateValueAndValidity();
+          this.myForm.getRawValue().clearValidators();
+          this.myForm.getRawValue().updateValueAndValidity();
+          this.myForm.getRawValue().clearValidators();
+          this.myForm.getRawValue().updateValueAndValidity();
+          this.myForm.getRawValue().clearValidators();
+          this.myForm.getRawValue().updateValueAndValidity();
 
           this.submitted = true; // show the response message
           this.submitting = false; // re-enable the submit button
@@ -75,7 +75,7 @@ export class ContactComponentComponent implements OnInit {
           } else {
             this.responseMessage = "An unknown error occurred.";
           }
-          this.form.enable(); // re-enable the form after a success
+          this.myForm.enable(); // re-enable the form after a success
           this.submitted = true; // show the response message
           this.submitting = false; // re-enable the submit button
           console.log(error);
