@@ -46,7 +46,7 @@ export class ContactComponentComponent implements OnInit {
       formData.append("subject", this.myForm.getRawValue().value);
       formData.append("message", this.myForm.getRawValue().value);
 
-      this.submitting = true; // sending the post request async so it's in progress
+      this.submitting = true; // sending the post request async so it's in progresy
       this.submitted = false; // hide the response message on multiple submits
       // this.http.post("https://formspree.io/f/moqbkgge", formData).subscribe(
         const subscription = this.http.post("http://api.nutrilab.co.ke/api/store-message", formData).subscribe({

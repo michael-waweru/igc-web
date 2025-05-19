@@ -91,7 +91,7 @@
                                 <mat-label class="label">Email</mat-label>
                                 <input matInput [formControl]="email" placeholder="Please enter a valid email address" />
                                 <mat-error *ngIf="email.invalid" class="text-danger">Please enter a valid email</mat-error>
-                            </mat-form-field>
+                              </mat-form-field>
                             </div>
 
                             <div class="col-lg-12 col-md-12">
@@ -99,7 +99,7 @@
                                 <mat-label class="label">Subject</mat-label>
                                 <input matInput [formControl]="subject" placeholder="Your subject matter"/>
                                 <mat-error *ngIf="subject.invalid" class="text-danger">Please enter a subject</mat-error>
-                            </mat-form-field>
+                              </mat-form-field>
                             </div>
 
                             <div class="col-lg-12 col-md-12">
@@ -108,7 +108,7 @@
                                 <textarea matInput [formControl]="message" maxlength="256" rows="5" placeholder="What do you need?"></textarea>
                                 <mat-hint align="end" class="label"> {{message.value?.length || 0}}/256</mat-hint>
                                 <mat-error *ngIf="message.invalid" class="text-danger">Please enter a message</mat-error>
-                            </mat-form-field>
+                              </mat-form-field>
                             </div>
 
                             <div class="col-lg-12 col-md-12">
