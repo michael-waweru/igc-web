@@ -1,3 +1,4 @@
+import { WarehouseModuleComponent } from './modules/warehouse-module/warehouse-module.component';
 import { NgModule } from '@angular/core';
 import { BroilerManagementComponent } from './modules/broiler-management/broiler-management.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -32,4 +33,5 @@ export const routes: Routes = [
   { path: 'modules/detail/veterinary-management', component: VeterinaryModuleComponent},
   { path: 'modules/detail/finance-module', component: FinanceModuleComponent},
   { path: 'modules/detail/egg-packing', component: EggPackingComponent},
+  { path: 'modules/detail/warehouse-module', component: WarehouseModuleComponent},
 ];
