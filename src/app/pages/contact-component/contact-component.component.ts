@@ -37,51 +37,51 @@ export class ContactComponentComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.myForm.status == "VALID" && this.honeypot.value == "" && !this.submitting) {
-    //   this.myForm.disable(); // disable the form if it's valid to disable multiple submissions
-    //   const formData: any = new FormData();
+    if (this.myForm.status == "VALID" && this.honeypot.value == "" && !this.submitting) {
+      this.myForm.disable(); // disable the form if it's valid to disable multiple submissions
+      const formData: any = new FormData();
 
-    //   formData.append("name", this.myForm.getRawValue().value);
-    //   formData.append("email", this.myForm.getRawValue().value);
-    //   formData.append("subject", this.myForm.getRawValue().value);
-    //   formData.append("message", this.myForm.getRawValue().value);
+      formData.append("name", this.myForm.getRawValue().value);
+      formData.append("email", this.myForm.getRawValue().value);
+      formData.append("subject", this.myForm.getRawValue().value);
+      formData.append("message", this.myForm.getRawValue().value);
 
-    //   this.submitting = true; // sending the post request async so it's in progresy
-    //   this.submitted = false; // hide the response message on multiple submits
-    //   // this.http.post("https://formspree.io/f/moqbkgge", formData).subscribe(
-    //     const subscription = this.http.post("http://api.nutrilab.co.ke/api/store-message", formData).subscribe({
-    //     next: (response) => {
-    //       this.responseMessage = "Your message has been sent.";
-    //       this.myForm.enable(); // re-enable the form after a success
-    //       this.myForm.reset();
+      this.submitting = true; // sending the post request async so it's in progresy
+      this.submitted = false; // hide the response message on multiple submits
+      // this.http.post("https://formspree.io/f/moqbkgge", formData).subscribe(
+        const subscription = this.http.post("http://api.nutrilab.co.ke/api/store-message", formData).subscribe({
+        next: (response) => {
+          this.responseMessage = "Your message has been sent.";
+          this.myForm.enable(); // re-enable the form after a success
+          this.myForm.reset();
 
-    //       this.myForm.getRawValue().clearValidators();
-    //       this.myForm.getRawValue().updateValueAndValidity();
-    //       this.myForm.getRawValue().clearValidators();
-    //       this.myForm.getRawValue().updateValueAndValidity();
-    //       this.myForm.getRawValue().clearValidators();
-    //       this.myForm.getRawValue().updateValueAndValidity();
-    //       this.myForm.getRawValue().clearValidators();
-    //       this.myForm.getRawValue().updateValueAndValidity();
+          this.myForm.getRawValue().clearValidators();
+          this.myForm.getRawValue().updateValueAndValidity();
+          this.myForm.getRawValue().clearValidators();
+          this.myForm.getRawValue().updateValueAndValidity();
+          this.myForm.getRawValue().clearValidators();
+          this.myForm.getRawValue().updateValueAndValidity();
+          this.myForm.getRawValue().clearValidators();
+          this.myForm.getRawValue().updateValueAndValidity();
 
-    //       this.submitted = true; // show the response message
-    //       this.submitting = false; // re-enable the submit button
-    //       console.log(response);
-    //     },
+          this.submitted = true; // show the response message
+          this.submitting = false; // re-enable the submit button
+          console.log(response);
+        },
 
-    //     error: (error: any) => {
-    //       if (error instanceof HttpErrorResponse) {
-    //         this.responseMessage = "Oops! An error occurred... Reload the page and try again.";
-    //       } else {
-    //         this.responseMessage = "An unknown error occurred.";
-    //       }
-    //       this.myForm.enable(); // re-enable the form after a success
-    //       this.submitted = true; // show the response message
-    //       this.submitting = false; // re-enable the submit button
-    //       console.log(error);
-    //     }
-    //   });
-    // }
+        error: (error: any) => {
+          if (error instanceof HttpErrorResponse) {
+            this.responseMessage = "Oops! An error occurred... Reload the page and try again.";
+          } else {
+            this.responseMessage = "An unknown error occurred.";
+          }
+          this.myForm.enable(); // re-enable the form after a success
+          this.submitted = true; // show the response message
+          this.submitting = false; // re-enable the submit button
+          console.log(error);
+        }
+      });
+    }
   }
 
 }
