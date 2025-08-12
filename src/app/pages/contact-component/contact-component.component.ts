@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ContactComponentComponent implements OnInit {
 
-  myForm: FormGroup;
+  contactForm: FormGroup;
   name: FormControl = new FormControl('',[Validators.required]);
   email: FormControl = new FormControl('',[Validators.required, Validators.email]);
   subject: FormControl = new FormControl('',[Validators.required]);
@@ -24,7 +24,7 @@ export class ContactComponentComponent implements OnInit {
   responseMessage: string | undefined; // the response message to show to the user
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
-    this.myForm = this.formBuilder.group({
+    this.contactForm = this.formBuilder.group({
       name: this.name,
       email: this.email,
       subject: this.subject,
@@ -37,32 +37,31 @@ export class ContactComponentComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.myForm.status == "VALID" && this.honeypot.value == "" && !this.submitting) {
-      this.myForm.disable(); // disable the form if it's valid to disable multiple submissions
+    if (this.contactForm.status == "VALID" && this.honeypot.value == "" && !this.submitting) {
+      this.contactForm.disable(); // disable the form if it's valid to disable multiple submissions
       const formData: any = new FormData();
 
-      formData.append("name", this.myForm.getRawValue().value);
-      formData.append("email", this.myForm.getRawValue().value);
-      formData.append("subject", this.myForm.getRawValue().value);
-      formData.append("message", this.myForm.getRawValue().value);
+      formData.append("name", this.contactForm.getRawValue().value);
+      formData.append("email", this.contactForm.getRawValue().value);
+      formData.append("subject", this.contactForm.getRawValue().value);
+      formData.append("message", this.contactForm.getRawValue().value);
 
       this.submitting = true; // sending the post request async so it's in progresy
       this.submitted = false; // hide the response message on multiple submits
-      // this.http.post("https://formspree.io/f/moqbkgge", formData).subscribe(
-        const subscription = this.http.post("http://api.nutrilab.co.ke/api/store-message", formData).subscribe({
+        const subscription = this.http.post("http://api.worldtechpartner.com/api/store-message", formData).subscribe({
         next: (response) => {
           this.responseMessage = "Your message has been sent.";
-          this.myForm.enable(); // re-enable the form after a success
-          this.myForm.reset();
+          this.contactForm.enable(); // re-enable the form after a success
+          this.contactForm.reset();
 
-          this.myForm.getRawValue().clearValidators();
-          this.myForm.getRawValue().updateValueAndValidity();
-          this.myForm.getRawValue().clearValidators();
-          this.myForm.getRawValue().updateValueAndValidity();
-          this.myForm.getRawValue().clearValidators();
-          this.myForm.getRawValue().updateValueAndValidity();
-          this.myForm.getRawValue().clearValidators();
-          this.myForm.getRawValue().updateValueAndValidity();
+          this.contactForm.getRawValue().clearValidators();
+          this.contactForm.getRawValue().updateValueAndValidity();
+          this.contactForm.getRawValue().clearValidators();
+          this.contactForm.getRawValue().updateValueAndValidity();
+          this.contactForm.getRawValue().clearValidators();
+          this.contactForm.getRawValue().updateValueAndValidity();
+          this.contactForm.getRawValue().clearValidators();
+          this.contactForm.getRawValue().updateValueAndValidity();
 
           this.submitted = true; // show the response message
           this.submitting = false; // re-enable the submit button
@@ -75,7 +74,7 @@ export class ContactComponentComponent implements OnInit {
           } else {
             this.responseMessage = "An unknown error occurred.";
           }
-          this.myForm.enable(); // re-enable the form after a success
+          this.contactForm.enable(); // re-enable the form after a success
           this.submitted = true; // show the response message
           this.submitting = false; // re-enable the submit button
           console.log(error);
