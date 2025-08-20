@@ -76,13 +76,13 @@
 
             <div class="col-lg-6 col-md-12">
                 <div class="contact-form">
-                    <form name="contactForm">
+                    <form name="contactForm" ng-hide="contactForm.$submitted" [formGroup]="contactForm" method="POST" (ngSubmit)="onSubmit()">
                         <div class="row">
                             <div class="col-lg-12 col-md-6">
                               <mat-form-field class="form-field col-md-6" appearance="fill">
                                 <mat-label class="label">Name</mat-label>
                                 <input matInput [formControl]="name" placeholder="Please enter your name"/>
-                                <mat-error *@if="name.invalid" class="text-danger">Please enter your name</mat-error>
+                                <mat-error *ngIf="name.invalid" class="text-danger">Please enter your name</mat-error>
                               </mat-form-field>
                             </div>
 
@@ -90,7 +90,7 @@
                               <mat-form-field class="form-field col-md-6 ml-2" appearance="fill">
                                 <mat-label class="label">Email</mat-label>
                                 <input matInput [formControl]="email" placeholder="Please enter a valid email address" />
-                                <mat-error *@if="email.invalid" class="text-danger">Please enter a valid email</mat-error>
+                                <mat-error *ngIf="email.invalid" class="text-danger">Please enter a valid email</mat-error>
                               </mat-form-field>
                             </div>
 
@@ -98,7 +98,7 @@
                               <mat-form-field class="form-field" appearance="fill">
                                 <mat-label class="label">Subject</mat-label>
                                 <input matInput [formControl]="subject" placeholder="Your subject matter"/>
-                                <mat-error *@if="subject.invalid" class="text-danger">Please enter a subject</mat-error>
+                                <mat-error *ngIf="subject.invalid" class="text-danger">Please enter a subject</mat-error>
                               </mat-form-field>
                             </div>
 
@@ -107,7 +107,7 @@
                                 <mat-label class="label">Message</mat-label>
                                 <textarea matInput [formControl]="message" maxlength="256" rows="5" placeholder="What do you need?"></textarea>
                                 <mat-hint align="end" class="label"> {{message.value?.length || 0}}/256</mat-hint>
-                                <mat-error *@if="message.invalid" class="text-danger">Please enter a message</mat-error>
+                                <mat-error *ngIf="message.invalid" class="text-danger">Please enter a message</mat-error>
                               </mat-form-field>
                             </div>
 
